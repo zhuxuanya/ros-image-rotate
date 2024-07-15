@@ -1,0 +1,10 @@
+<launch>
+    <arg name="image_topic" default="/RS4/usb_cam/image_raw"/>
+    <arg name="image_angle" default="180"/>
+    <arg name="image_scale" default="1.0"/>
+    <node name="image_rotate" pkg="image_rotate" type="image_rotate.py" output="screen">
+        <param name="image_topic" value="$(arg image_topic)"/>
+        <param name="image_angle" value="$(arg image_angle)"/>
+        <param name="image_scale" value="$(arg image_scale)"/>
+    </node>
+</launch>
