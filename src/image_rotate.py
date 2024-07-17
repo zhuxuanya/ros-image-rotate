@@ -27,7 +27,9 @@ class ImageNode:
     rotated = cv2.warpAffine(cv_image, M, (w, h))
 
     try:
-      self.image_pub.publish(self.bridge.cv2_to_imgmsg(rotated, "bgr8"))
+      rotated_img_msg = self.bridge.cv2_to_imgmsg(rotated, "bgr8")
+      rotated_img_msg.header = image.header
+      self.image_pub.publish(rotated_img_msg)
     except CvBridgeError as e:
       rospy.logerr(e)
       return
